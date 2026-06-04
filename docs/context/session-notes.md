@@ -100,3 +100,25 @@
 2. **Modul Penilaian (4.2):** Formulir penginputan nilai akhir anggota per tahun ajaran (skala 0.00 - 100.00).
 3. **Ekspor & Laporan (4.3):** Pembuatan laporan rekap anggota, rekap absensi, dan penilaian ke format PDF (DomPDF) & Excel (Laravel Excel).
 4. **Audit Log Viewer (4.4):** Halaman log pelacak aktivitas sistem untuk administrator kesiswaan.
+
+## Sesi 7 — 4 Juni 2026 (Lanjutan)
+**Fokus:** Implementasi Fase 3 — Operational (Absensi, Penilaian, Laporan, & Audit Log).
+- **Modul Absensi (Siswa):**
+  - Membuat `Manage\AbsensiController` untuk mengelola sesi latihan dan bulk absensi.
+  - Saat sesi latihan baru dibuat, secara otomatis menginisialisasi lembar presensi default ("Hadir") bagi seluruh anggota aktif ekskul tersebut.
+  - Membuat halaman Inertia React: `Manage/Absensi/Index` (daftar sesi latihan, form pencatatan sesi baru, penghapusan sesi) dan `Manage/Absensi/Show` (bulk status presensi siswa: Hadir, Izin, Sakit, Alfa dengan menu *Setel Semua* presensi cepat).
+- **Modul Penilaian (Siswa):**
+  - Membuat `Manage\PenilaianController` untuk input nilai akhir tahun ajaran (skala 0 s/d 100).
+  - Membuat halaman Inertia React: `Manage/Penilaian/Index` yang menampilkan daftar anggota aktif beserta input nilai desimal yang bisa di-upsert secara bulk.
+- **Ekspor & Laporan (PDF & Excel):**
+  - Membuat `Manage\LaporanController` yang menyajikan dasbor pengunduhan berkas laporan di `Manage/Laporan/Index`.
+  - Mengembangkan 3 kelas Excel Export: `AnggotaExport`, `AbsensiExport`, dan `PenilaianExport` dengan fitur auto-size kolom dan mapping data rapi.
+  - Membuat 3 template cetak PDF menggunakan DomPDF: `pdf.anggota`, `pdf.absensi`, dan `pdf.penilaian` yang kompatibel dengan format halaman sekolah resmi.
+- **Audit Log Viewer (Kesiswaan):**
+  - Membuat `Admin\AuditLogController` untuk melacak WHO, WHAT, WHEN seluruh aktivitas pengguna pada sistem.
+  - Membuat halaman Inertia React: `Admin/AuditLog/Index` yang menyajikan tabel riwayat perubahan data (paginated) lengkap dengan panel penelaah data payload JSON sebelum/sesudah diubah.
+
+### Langkah Selanjutnya
+1. **Fase 4 — Enrichment (P1) - Pengumuman & Media Publik (5.1):** Pembuatan manajemen pengumuman internal ekskul dengan lampiran file, scheduler rilis, dokumentasi event publik, dan album foto publik (tanpa login).
+2. **Jadwal & Kalender (5.2):** Integrasi jadwal rutin dan event ke kalender interaktif.
+3. **Struktur Organisasi (5.3):** Visualisasi kepengurusan ekskul (Bagan Struktur Organisasi) yang di-generate dinamis dari data anggota.

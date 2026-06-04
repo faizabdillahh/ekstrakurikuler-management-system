@@ -104,25 +104,25 @@ Dokumen ini berisi rencana implementasi teknis komprehensif untuk membangun Sist
 
 ### 4.1. Modul Absensi
 *(Dependensi: 3.3)*
-- [ ] Buat `Manage\AbsensiController` (UI List Sesi & Buat Sesi).
-- [ ] UI Form Bulk Absensi Anggota per Sesi (Status: Hadir, Izin, Sakit, Alfa) (`REQ-FUNC-050`).
-- [ ] Fitur Edit Absensi (Update bulk array anggota).
+- [x] Buat `Manage\AbsensiController` (UI List Sesi & Buat Sesi).
+- [x] UI Form Bulk Absensi Anggota per Sesi (Status: Hadir, Izin, Sakit, Alfa) (`REQ-FUNC-050`).
+- [x] Fitur Edit Absensi (Update bulk array anggota).
 
 ### 4.2. Modul Penilaian
 *(Dependensi: 3.3)*
-- [ ] Buat `Manage\PenilaianController` dan UI `Manage/Penilaian/Index`.
-- [ ] UI Form Bulk Penilaian (Table View Input) (Validasi nilai akhir 0-100) (`REQ-FUNC-060`).
+- [x] Buat `Manage\PenilaianController` dan UI `Manage/Penilaian/Index`.
+- [x] UI Form Bulk Penilaian (Table View Input) (Validasi nilai akhir 0-100) (`REQ-FUNC-060`).
 
 ### 4.3. Laporan & Ekspor (Kesiswaan & Pembina)
 *(Dependensi: 4.1 & 4.2)*
-- [ ] Buat `Admin\LaporanController` (UI filter jenis laporan, ekskul, tahun ajaran).
-- [ ] Implementasi ekspor PDF (DomPDF) & Excel (Laravel Excel) untuk Daftar Anggota (`REQ-INT-013`).
-- [ ] Implementasi ekspor Rekap Absensi & Rekap Penilaian per Ekskul.
+- [x] Buat `Admin\LaporanController` (UI filter jenis laporan, ekskul, tahun ajaran).
+- [x] Implementasi ekspor PDF (DomPDF) & Excel (Laravel Excel) untuk Daftar Anggota (`REQ-INT-013`).
+- [x] Implementasi ekspor Rekap Absensi & Rekap Penilaian per Ekskul.
 
 ### 4.4. Audit Log Viewer
 *(Dependensi: 2.1)*
-- [ ] Buat `Admin\AuditLogController` (UI List Logs read-only).
-- [ ] Tampilkan detail WHO (Causer), WHAT (Properties changes), WHEN (Created At) (`REQ-FUNC-101`).
+- [x] Buat `Admin\AuditLogController` (UI List Logs read-only).
+- [x] Tampilkan detail WHO (Causer), WHAT (Properties changes), WHEN (Created At) (`REQ-FUNC-101`).
 
 ---
 

@@ -56,12 +56,33 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/anggota', [\App\Http\Controllers\Manage\AnggotaController::class, 'index'])->name('manage.anggota.index');
             Route::post('/anggota', [\App\Http\Controllers\Manage\AnggotaController::class, 'store'])->name('manage.anggota.store');
             Route::put('/anggota/{id}/status', [\App\Http\Controllers\Manage\AnggotaController::class, 'updateStatus'])->name('manage.anggota.update_status');
+
+            // Absensi
+            Route::get('/absensi', [\App\Http\Controllers\Manage\AbsensiController::class, 'index'])->name('manage.absensi.index');
+            Route::post('/absensi', [\App\Http\Controllers\Manage\AbsensiController::class, 'store'])->name('manage.absensi.store');
+            Route::get('/absensi/{id}', [\App\Http\Controllers\Manage\AbsensiController::class, 'show'])->name('manage.absensi.show');
+            Route::put('/absensi/{id}', [\App\Http\Controllers\Manage\AbsensiController::class, 'update'])->name('manage.absensi.update');
+            Route::delete('/absensi/{id}', [\App\Http\Controllers\Manage\AbsensiController::class, 'destroy'])->name('manage.absensi.destroy');
+
+            // Penilaian
+            Route::get('/penilaian', [\App\Http\Controllers\Manage\PenilaianController::class, 'index'])->name('manage.penilaian.index');
+            Route::put('/penilaian', [\App\Http\Controllers\Manage\PenilaianController::class, 'update'])->name('manage.penilaian.update');
+
+            // Laporan
+            Route::get('/laporan', [\App\Http\Controllers\Manage\LaporanController::class, 'index'])->name('manage.laporan.index');
+            Route::get('/laporan/pdf/anggota', [\App\Http\Controllers\Manage\LaporanController::class, 'exportAnggotaPdf'])->name('manage.laporan.anggota.pdf');
+            Route::get('/laporan/excel/anggota', [\App\Http\Controllers\Manage\LaporanController::class, 'exportAnggotaExcel'])->name('manage.laporan.anggota.excel');
+            Route::get('/laporan/pdf/absensi', [\App\Http\Controllers\Manage\LaporanController::class, 'exportAbsensiPdf'])->name('manage.laporan.absensi.pdf');
+            Route::get('/laporan/excel/absensi', [\App\Http\Controllers\Manage\LaporanController::class, 'exportAbsensiExcel'])->name('manage.laporan.absensi.excel');
+            Route::get('/laporan/pdf/penilaian', [\App\Http\Controllers\Manage\LaporanController::class, 'exportPenilaianPdf'])->name('manage.laporan.penilaian.pdf');
+            Route::get('/laporan/excel/penilaian', [\App\Http\Controllers\Manage\LaporanController::class, 'exportPenilaianExcel'])->name('manage.laporan.penilaian.excel');
         });
 
     // Kesiswaan (Admin) Routes
     Route::middleware(['role:kesiswaan'])->group(function () {
         Route::get('/admin/siswa/import', [\App\Http\Controllers\Admin\ImportController::class, 'create'])->name('admin.siswa.import');
         Route::post('/admin/siswa/import', [\App\Http\Controllers\Admin\ImportController::class, 'store']);
+        Route::get('/admin/audit-log', [\App\Http\Controllers\Admin\AuditLogController::class, 'index'])->name('admin.audit-log.index');
     });
 });
 

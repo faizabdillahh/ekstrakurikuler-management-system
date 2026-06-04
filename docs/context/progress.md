@@ -28,7 +28,7 @@
 | 14 | Project Setup (Scaffolding) | Root project | Selesai |
 | 15 | Implementasi Fase 1 — Foundation (P0) | — | Migrasi, Seeding, Auth, Layout, & Impor Excel Selesai |
 | 16 | Implementasi Fase 2 — Core Flow | — | Pendaftaran, Seleksi, Manajemen Anggota, & Notifikasi Selesai |
-| 17 | Implementasi Fase 3 — Operational | — | Belum dimulai |
+| 17 | Implementasi Fase 3 — Operational | — | Absensi, Penilaian, Laporan PDF/Excel, & Audit Log Selesai |
 | 18 | Implementasi Fase 4 — Enrichment | — | Belum dimulai |
 | 19 | Implementasi Fase 5 — Enhancement | — | Belum dimulai |
 
