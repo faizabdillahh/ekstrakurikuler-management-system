@@ -74,12 +74,15 @@ npm install
 ```
 
 ### 6. Jalankan Server Development
-Jalankan server backend PHP dan build server Vite (Tailwind CSS v4 + React compilation) secara bersamaan:
+Jalankan server backend PHP, build server Vite (Tailwind CSS v4 + React compilation), dan Queue listener secara bersamaan dengan satu perintah:
 ```bash
-npm run dev
+composer dev
 ```
 
 Server Anda akan berjalan pada `http://127.0.0.1:8000`.
+
+> [!NOTE]
+> Pada sistem operasi Windows, pembaca log `laravel/pail` dinonaktifkan karena membutuhkan ekstensi `pcntl` PHP yang hanya didukung oleh sistem operasi berbasis POSIX/Linux. Perintah `composer dev` telah disesuaikan agar berjalan lancar di Windows tanpa Pail.
 
 ---
 
