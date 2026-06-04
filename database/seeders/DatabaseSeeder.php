@@ -181,5 +181,8 @@ class DatabaseSeeder extends Seeder
             ]);
             $student->assignRole('siswa');
         }
+
+        // 5. Seed Extracurricular Leaders
+        $this->call(EkstrakurikulerLeaderSeeder::class);
     }
 }

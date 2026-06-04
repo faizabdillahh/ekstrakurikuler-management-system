@@ -26,7 +26,7 @@
 
 | 13 | Folder Structure | `docs/architecture/folder-structure.md` | Selesai |
 | 14 | Project Setup (Scaffolding) | Root project | Selesai |
-| 15 | Implementasi Fase 1 — Foundation (P0) | — | Migrasi & Seeding Selesai (Auth Google/Middleware berikutnya) |
+| 15 | Implementasi Fase 1 — Foundation (P0) | — | Migrasi, Seeding, Auth, Layout, & Impor Excel Selesai |
 | 16 | Implementasi Fase 2 — Core Flow | — | Belum dimulai |
 | 17 | Implementasi Fase 3 — Operational | — | Belum dimulai |
 | 18 | Implementasi Fase 4 — Enrichment | — | Belum dimulai |

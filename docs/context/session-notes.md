@@ -51,7 +51,22 @@
 - Menguji database migration dan seeding secara menyeluruh melalui `php artisan migrate:fresh --seed`.
 - Memperbarui file rencana implementasi (`implementation-plan.md`) dan status progress (`progress.md`).
 
+## Sesi 5 — 4 Juni 2026 (Lanjutan)
+**Fokus:** Autentikasi Google OAuth, Middleware Keamanan, dan Interface Login/Dashboard.
+- Mengintegrasikan package `laravel/socialite` dengan konfigurasi Google OAuth di `config/services.php` dan `.env`.
+- Membuat `SocialiteController` untuk menangani alur redirect Google, callback, verifikasi domain email sekolah `@smkn1bawang.sch.id` (dapat ditoggle via `GOOGLE_OAUTH_RESTRICT_DOMAIN`), pencarian user terdaftar, penyesuaian avatar profil, dan regenerasi session.
+- Membuat middleware `EnsureTahunAjaranAktif` yang melacak dan menyuntikkan tahun ajaran aktif secara global sebagai shared prop Inertia, serta middleware `EnsureEkskulAccess` untuk validasi penugasan admin ekskul di pivot table.
+- Mendaftarkan middleware di `bootstrap/app.php` dengan alias (`ekskul.access`, `role`, `permission`, `role_or_permission`) dan menyisipkannya ke rute web yang sesuai di `routes/web.php`.
+- Mengimplementasikan view Inertia React: `Auth/Login.tsx` (kartu login premium dengan flash error alerts) dan `Dashboard.tsx` (dashboard profil user terintegrasi).
+- Menulis dokumen `instruction.md` berisi panduan manual integrasi Google Cloud Console Client ID/Secret ke lingkungan lokal.
+- Membuat `AuthenticatedLayout.tsx` yang mencakup Sidebar responsif (mobile drawer & desktop menu), info akun pengguna, dan menu navigasi dinamis berbasis peran aktif.
+- Membuat fitur ganti peran (*Context Switcher Role*) untuk menangani pengguna dengan peran ganda (*dual role*).
+- Membuat kelas parser `SiswaImport` yang secara fleksibel membaca data NIS, nama, kelas, jurusan, gender, dan nomor HP dari spreadsheet serta mengotomatisasi generasi alamat email sekolah siswa (`nis@jurusan.smkn1bawang.sch.id`).
+- Membuat `ImportSiswaJob` untuk memproses unggahan file secara asinkron di antrean *background queue* (`database` driver).
+- Membuat `Admin\ImportController` untuk validasi unggahan berkas spreadsheet Excel, menyimpannya di folder aman sementara, serta memicu pekerjaan *queue job*.
+- Mendaftarkan rute-rute admin kesiswaan untuk pengelolaan data impor siswa di `routes/web.php` dan mendesain antarmuka `Admin/Siswa/Import.tsx` lengkap dengan panduan kolom Excel.
+- Memperbarui berkas rencana implementasi (`implementation-plan.md`) dengan status selesai pada item 2.3, 2.4, dan 2.5.
+
 ### Langkah Selanjutnya
-1. Setup Google OAuth login flow (Socialite) dan batasan domain `@smkn1bawang.sch.id`.
-2. Implementasi Middleware `EnsureTahunAjaranAktif` dan `EnsureEkskulAccess`.
-3. Mulai merancang halaman login dan layout dashboard untuk masing-masing user role.
+1. **Fase 2 — Core Flow (P0) - Halaman Ekskul & Pendaftaran (3.1 & 3.2):** Pembuatan halaman beranda pendaftaran ekskul bagi siswa, menampilkan periode yang aktif, dan formulir pengunggahan sertifikat prestasi pendukung (maks. 2 MB) secara dinamis.
+2. **Seleksi Administratif & Finalisasi (3.3):** Pembuatan dasbor seleksi administratif bagi pembina ekskul untuk menentukan status penerimaan (diterima/ditolak) serta mengunci keputusan final seleksi.

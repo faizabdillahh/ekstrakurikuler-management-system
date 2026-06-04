@@ -48,21 +48,21 @@ Dokumen ini berisi rencana implementasi teknis komprehensif untuk membangun Sist
 
 ### 2.3. Autentikasi Google OAuth & Middleware
 *(Dependensi: 2.2)*
-- [ ] Implementasi `Auth/LoginController` dan UI `Auth/Login` (Inertia page).
-- [ ] Implementasi `SocialiteController@callback` -> Validasi `@smkn1bawang.sch.id` (`REQ-SEC-001`).
-- [ ] Buat Middleware `EnsureTahunAjaranAktif` (Inject shared props `tahunAjaranAktif` di `HandleInertiaRequests`).
-- [ ] Buat Middleware `EnsureEkskulAccess` (Validasi admin di tabel `admin_ekskul_assignments`).
+- [x] Implementasi `Auth/LoginController` dan UI `Auth/Login` (Inertia page).
+- [x] Implementasi `SocialiteController@callback` -> Validasi `@smkn1bawang.sch.id` (`REQ-SEC-001`).
+- [x] Buat Middleware `EnsureTahunAjaranAktif` (Inject shared props `tahunAjaranAktif` di `HandleInertiaRequests`).
+- [x] Buat Middleware `EnsureEkskulAccess` (Validasi admin di tabel `admin_ekskul_assignments`).
 
 ### 2.4. Dashboard & UI Layout
 *(Dependensi: 2.3)*
-- [ ] Buat Base Layout (Navbar, Sidebar responsif, Context Switcher Role) (`REQ-INT-001`).
-- [ ] Buat UI `Home` (Publik), dan Routing `/dashboard` yang dire-route ke `Dashboard/{Role}`.
+- [x] Buat Base Layout (Navbar, Sidebar responsif, Context Switcher Role) (`REQ-INT-001`).
+- [x] Buat UI `Home` (Publik), dan Routing `/dashboard` yang dire-route ke `Dashboard/{Role}`.
 
 ### 2.5. Import Data Siswa (Excel/PDF)
 *(Dependensi: 2.4)*
-- [ ] Setup Laravel Queue Worker (Database driver).
-- [ ] Buat `Admin\ImportController` & UI `Admin/Siswa/Import` (Upload xlsx).
-- [ ] Implementasi `ImportSiswaJob` (via Laravel Excel) (`REQ-INT-012`, `REQ-PERF-003`).
+- [x] Setup Laravel Queue Worker (Database driver).
+- [x] Buat `Admin\ImportController` & UI `Admin/Siswa/Import` (Upload xlsx).
+- [x] Implementasi `ImportSiswaJob` (via Laravel Excel) (`REQ-INT-012`, `REQ-PERF-003`).
 
 ---
 

@@ -28,6 +28,11 @@
 - **Detail:** SRS mensyaratkan import data siswa via PDF dan Excel. Parsing PDF terstruktur jauh lebih kompleks dan error-prone dibanding Excel.
 - **Dampak:** Mungkin perlu library tambahan (misal: Smalot/PdfParser) dan validasi data post-parsing yang lebih ketat.
 
+### L-005: Laravel Pail Dinonaktifkan pada Platform Windows
+- **Status:** Resolved (Disabled in Local Dev)
+- **Detail:** `laravel/pail` memerlukan ekstensi PHP `pcntl` untuk melacak log interaktif, yang hanya didukung oleh OS berbasis POSIX/Linux.
+- **Dampak:** Perintah pengembangan `composer dev` disesuaikan untuk tidak menyertakan `php artisan pail` pada sistem operasi Windows agar proses development server tidak crash. Log tetap dapat dibaca secara manual melalui `storage/logs/laravel.log`.
+
 ---
 
 ## Bug Aktif

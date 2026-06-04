@@ -46,7 +46,8 @@ Aplikasi wajib menangani risiko keamanan sesuai dengan standar OWASP Top 10:2025
 - **Hosted Domain Validation:** Parameter `hd=smkn1bawang.sch.id` di URL OAuth hanya mitigasi UI. Validasi hakiki **wajib** dilakukan di controller *callback* server-side:
   ```php
   $user = Socialite::driver('google')->user();
-  if ($user->user['hd'] !== 'smkn1bawang.sch.id') {
+  $domain = substr(strrchr($user->getEmail(), "@"), 1);
+  if (!str_ends_with($domain, 'smkn1bawang.sch.id')) {
       abort(403, 'Gunakan email sekolah @smkn1bawang.sch.id');
   }
   ```

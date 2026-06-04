@@ -56,3 +56,7 @@
 ## DEC-013: Sertifikat — Temporary Storage dengan Auto-Cleanup
 - **Tanggal:** 4 Juni 2026
 - **Keputusan:** File sertifikat pendaftaran dihapus otomatis oleh scheduled command harian setelah seleksi dinyatakan final.
+
+## DEC-014: Pail Logger Dinonaktifkan pada Dev Script Windows
+- **Tanggal:** 4 Juni 2026
+- **Keputusan:** Menghapus `php artisan pail` dari konfigurasi `composer dev` karena ketergantungan pada ekstensi `pcntl` yang tidak kompatibel dengan sistem operasi Windows. Log developer tetap dapat ditinjau via `storage/logs/laravel.log`.
