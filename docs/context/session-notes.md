@@ -70,3 +70,33 @@
 ### Langkah Selanjutnya
 1. **Fase 2 — Core Flow (P0) - Halaman Ekskul & Pendaftaran (3.1 & 3.2):** Pembuatan halaman beranda pendaftaran ekskul bagi siswa, menampilkan periode yang aktif, dan formulir pengunggahan sertifikat prestasi pendukung (maks. 2 MB) secara dinamis.
 2. **Seleksi Administratif & Finalisasi (3.3):** Pembuatan dasbor seleksi administratif bagi pembina ekskul untuk menentukan status penerimaan (diterima/ditolak) serta mengunci keputusan final seleksi.
+
+## Sesi 6 — 4 Juni 2026 (Lanjutan)
+**Fokus:** Implementasi Fase 2 — Core Flow (Pendaftaran, Seleksi, Manajemen Anggota, Notifikasi, & Scheduler).
+- **Halaman Ekskul & Pendaftaran (Siswa):**
+  - Membuat `EkskulController` untuk memproyeksikan daftar ekstrakurikuler aktif di tahun ajaran ini dan profil detail (jadwal latihan, daftar pembina, media sosial).
+  - Membuat `PendaftaranController` untuk pendaftaran CRUD, pengecekan keabsahan periode pendaftaran, kuota, pencegahan pendaftaran ganda, dan pembatalan pendaftaran.
+  - Membuat `SertifikatController` untuk melampirkan berkas sertifikat pendukung (maks 2MB, PDF/JPG/PNG) dan penghapusan berkas sebelum seleksi final.
+  - Membuat halaman Inertia React: `Ekskul/Index`, `Ekskul/Show`, `Pendaftaran/Index`, `Pendaftaran/Create`, dan `Pendaftaran/Show`.
+- **Panel Admin Ekskul (Seleksi):**
+  - Membuat `Manage\SeleksiController` untuk manajemen review siswa pendaftar.
+  - Mendukung keputusan status biner (Terima/Tolak) secara instan baik individu maupun bulk-selection.
+  - Mengimplementasikan fitur finalisasi seleksi (`finalize`) yang mengunci keputusan, memigrasikan pendaftar diterima menjadi data resmi ke tabel `anggota`, serta menyebarkan notifikasi kelulusan.
+  - Membuat antarmuka admin `Manage/Seleksi/Index.tsx` yang kaya visual grafik/stat, edit kuota ekskul, pratinjau sertifikat, dan tombol bulk-actions.
+- **Manajemen Anggota Ekskul Aktif:**
+  - Membuat `Manage\AnggotaController` dan antarmuka `Manage/Anggota/Index.tsx`.
+  - Mendukung penambahan anggota secara manual oleh pembina (sumber: manual) untuk siswa telat daftar.
+  - Menyediakan fitur pemberhentian status anggota ("Dikeluarkan") dengan pencatatan penanggung jawab.
+- **Notifikasi & Auto-Cleanup:**
+  - Mengintegrasikan penulisan log `Notifikasi` in-app saat pendaftaran diajukan dan saat seleksi dirilis (finalisasi).
+  - Menambahkan template generator pesan WhatsApp otomatis (`wa.me`) pada tabel seleksi admin.
+  - Membuat Artisan command `sertifikat:cleanup` yang berjalan harian (`daily()` di `routes/console.php`) guna menghapus file sertifikat pendaftar yang seleksinya sudah final.
+- **Bugs & Type-Safety Resolution:**
+  - Menyelesaikan warning TypeScript *missing index signature* pada generic prop `AuthProps` di `Dashboard.tsx`.
+  - Memperbaiki deklarasi variabel signature `$signature` pada Artisan command `CreateUser`.
+
+### Langkah Selanjutnya
+1. **Fase 3 — Operational (P0) - Modul Absensi (4.1):** Pembuatan pembukuan absensi latihan rutin (sesi, bulk status kehadiran Hadir/Izin/Sakit/Alfa, dan edit kehadiran).
+2. **Modul Penilaian (4.2):** Formulir penginputan nilai akhir anggota per tahun ajaran (skala 0.00 - 100.00).
+3. **Ekspor & Laporan (4.3):** Pembuatan laporan rekap anggota, rekap absensi, dan penilaian ke format PDF (DomPDF) & Excel (Laravel Excel).
+4. **Audit Log Viewer (4.4):** Halaman log pelacak aktivitas sistem untuk administrator kesiswaan.

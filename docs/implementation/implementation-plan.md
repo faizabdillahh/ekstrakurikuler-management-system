@@ -71,31 +71,31 @@ Dokumen ini berisi rencana implementasi teknis komprehensif untuk membangun Sist
 
 ### 3.1. Halaman Ekskul & Pendaftaran (Siswa)
 *(Dependensi: 2.5)*
-- [ ] Buat `EkskulController` (UI List Ekskul aktif di tahun ajaran, filter kategori).
-- [ ] Implementasi `PendaftaranController`:
+- [x] Buat `EkskulController` (UI List Ekskul aktif di tahun ajaran, filter kategori).
+- [x] Implementasi `PendaftaranController`:
   - `create` / `store`: Form Daftar, cek periode pendaftaran aktif (`REQ-FUNC-020`).
   - `update`: Ubah pilihan ekskul (`REQ-FUNC-024`).
-- [ ] Implementasi File Upload `SertifikatController@store` (Validasi 2MB, PDF/JPG/PNG) (`REQ-FUNC-023`, `REQ-REL-001`).
-- [ ] Dashboard Siswa: Tampilkan status "Dalam Review" (`REQ-INT-004`).
+- [x] Implementasi File Upload `SertifikatController@store` (Validasi 2MB, PDF/JPG/PNG) (`REQ-FUNC-023`, `REQ-REL-001`).
+- [x] Dashboard Siswa: Tampilkan status "Dalam Review" (`REQ-INT-004`).
 
 ### 3.2. Panel Admin Ekskul (Seleksi)
 *(Dependensi: 3.1)*
-- [ ] Buat `Manage\SeleksiController` dan UI `Manage/Seleksi/Index`.
-- [ ] Fitur update seleksi individu/bulk: Terima/Tolak (Biner) (`REQ-FUNC-030`).
-- [ ] Fitur `finalize` seleksi: Kunci status, trigger Job migrasi pendaftar diterima -> tabel `anggota`.
-- [ ] Cron Job (Scheduler): `sertifikat:cleanup` otomatis hapus file jika seleksi final (`REQ-COMP-002`).
+- [x] Buat `Manage\SeleksiController` dan UI `Manage/Seleksi/Index`.
+- [x] Fitur update seleksi individu/bulk: Terima/Tolak (Biner) (`REQ-FUNC-030`).
+- [x] Fitur `finalize` seleksi: Kunci status, trigger Job migrasi pendaftar diterima -> tabel `anggota`.
+- [x] Cron Job (Scheduler): `sertifikat:cleanup` otomatis hapus file jika seleksi final (`REQ-COMP-002`).
 
 ### 3.3. Manajemen Anggota Ekskul Aktif
 *(Dependensi: 3.2)*
-- [ ] Buat `Manage\AnggotaController` dan UI `Manage/Anggota/Index`.
-- [ ] Fitur Tambah Anggota Manual (untuk siswa telat) (`REQ-FUNC-025`).
-- [ ] Fitur ubah status anggota: "Dikeluarkan" (`REQ-FUNC-040`).
+- [x] Buat `Manage\AnggotaController` dan UI `Manage/Anggota/Index`.
+- [x] Fitur Tambah Anggota Manual (untuk siswa telat) (`REQ-FUNC-025`).
+- [x] Fitur ubah status anggota: "Dikeluarkan" (`REQ-FUNC-040`).
 
 ### 3.4. Notifikasi Pendaftaran (WhatsApp & In-App)
 *(Dependensi: 3.2)*
-- [ ] Logika Insert Notifikasi saat pendaftaran sukses, seleksi rilis.
-- [ ] Buat Helper JS frontend: `generateWaLink(noHp, pesan)`.
-- [ ] UI Notifikasi In-App (lonceng header) & tombol bulk WA di panel Admin Seleksi (`REQ-INT-011`, `REQ-FUNC-111`).
+- [x] Logika Insert Notifikasi saat pendaftaran sukses, seleksi rilis.
+- [x] Buat Helper JS frontend: `generateWaLink(noHp, pesan)`.
+- [x] UI Notifikasi In-App (lonceng header) & tombol bulk WA di panel Admin Seleksi (`REQ-INT-011`, `REQ-FUNC-111`).
 
 ---
 

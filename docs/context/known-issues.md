@@ -37,4 +37,10 @@
 
 ## Bug Aktif
 
-Belum ada — proyek masih dalam fase perencanaan/arsitektur.
+Tidak ada bug aktif yang terdeteksi. Pengerjaan Fase 1 (Foundation) termasuk autentikasi OAuth Google, sistem middleware, tata letak antarmuka, dan impor data siswa via background queue telah diuji dan berfungsi dengan baik.
+
+---
+
+## Catatan Pengujian Lokal
+- **Google OAuth:** Memerlukan konfigurasi `GOOGLE_CLIENT_ID` dan `GOOGLE_CLIENT_SECRET` asli dari Google Cloud Console agar dapat bekerja. Pengujian lokal dapat menggunakan email Google pribadi dengan menyetel `GOOGLE_OAUTH_RESTRICT_DOMAIN=false` pada file `.env`.
+- **Pembuatan User Testing:** Gunakan perintah kustom `php artisan user:create "Nama" "email@domain.com" --role=kesiswaan` untuk mendaftarkan email Google uji coba Anda ke database sebelum mencoba masuk lewat login Google.

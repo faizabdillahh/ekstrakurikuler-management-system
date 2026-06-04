@@ -36,3 +36,7 @@ Artisan::command('user:create {nama} {email} {--role=siswa} {--nis=} {--kelas=} 
     $this->info("User {$nama} ({$email}) berhasil dibuat dengan role '{$roleName}'!");
 })->purpose('Create a new user in the database for local testing and assign a role');
 
+use Illuminate\Support\Facades\Schedule;
+Schedule::command('sertifikat:cleanup')->daily();
+
+
