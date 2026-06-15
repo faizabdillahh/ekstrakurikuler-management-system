@@ -54,6 +54,9 @@ class HandleInertiaRequests extends Middleware
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),
             ],
+            'notifikasiUnreadCount' => fn () => $request->user() 
+                ? \App\Models\Notifikasi::where('user_id', $request->user()->id)->where('is_read', false)->count() 
+                : 0,
         ];
     }
 }

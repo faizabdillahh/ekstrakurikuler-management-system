@@ -118,7 +118,27 @@
   - Membuat `Admin\AuditLogController` untuk melacak WHO, WHAT, WHEN seluruh aktivitas pengguna pada sistem.
   - Membuat halaman Inertia React: `Admin/AuditLog/Index` yang menyajikan tabel riwayat perubahan data (paginated) lengkap dengan panel penelaah data payload JSON sebelum/sesudah diubah.
 
+## Sesi 8 — 15 Juni 2026
+**Fokus:** Implementasi Fase 4 — Enrichment (Pengumuman, Event, Galeri, Jadwal, Kalender, Pencarian, Notifikasi, Pengurus & Custom Edit Profil).
+- **Struktur Organisasi:**
+  - Membuat halaman manajemen struktur organisasi `Manage/Struktur/Index.tsx` untuk mengatur penugasan peran jabatan fungsional pengurus ekstrakurikuler dengan urutan prioritas tampil.
+- **Pengurus & Akses OSIS:**
+  - Membuat halaman manajemen admin ekskul dan suksesi OSIS `Admin/Pengurus/Index.tsx` yang memfasilitasi penugasan admin serta pengalihan peran kepengurusan OSIS secara manual sesuai konsiderasi bisnis.
+- **Pengaturan Profil & Branding Ekskul:**
+  - Membuat halaman pengaturan branding ekskul `Manage/Ekskul/Edit.tsx` untuk kustomisasi logo, deskripsi, tautan sosial media, dan warna primer/sekunder tema.
+- **Portofolio Galeri & Foto:**
+  - Membuat halaman galeri publik `Galeri/Index.tsx` dan pratinjau album `Galeri/Show.tsx` lengkap dengan lightbox penampil foto beresolusi tinggi.
+- **Kalender & Pencarian Global:**
+  - Membuat halaman kalender gabungan `Kalender/Index.tsx` yang mengintegrasikan jadwal rutin mingguan dan event kegiatan.
+  - Membuat halaman `Pencarian/Index.tsx` untuk pencarian global terintegrasi pada unit ekskul, event, dan pengumuman aktif.
+- **Notifikasi In-App:**
+  - Menyelesaikan antarmuka halaman `Notifikasi/Index.tsx` untuk peninjauan notifikasi status seleksi, kehadiran, dan pengumuman dengan aksi tandai dibaca.
+- **Dashboard Terintegrasi:**
+  - Mengintegrasikan data dinamis, peringatan bentrok jadwal latihan, notifikasi belum dibaca, dan statistik admin kesiswaan ke dalam `Dashboard.tsx`.
+- **Verifikasi Build:**
+  - Menjalankan kompilasi produksi `npm run build` yang sukses tanpa error type check atau syntax error.
+
 ### Langkah Selanjutnya
-1. **Fase 4 — Enrichment (P1) - Pengumuman & Media Publik (5.1):** Pembuatan manajemen pengumuman internal ekskul dengan lampiran file, scheduler rilis, dokumentasi event publik, dan album foto publik (tanpa login).
-2. **Jadwal & Kalender (5.2):** Integrasi jadwal rutin dan event ke kalender interaktif.
-3. **Struktur Organisasi (5.3):** Visualisasi kepengurusan ekskul (Bagan Struktur Organisasi) yang di-generate dinamis dari data anggota.
+1. **Fase 5 — Enhancement & Polish (P2) - Ranking & Statistik (6.1):** Integrasi chart statistik atau visualisasi rekap kuantitatif di dashboard kesiswaan.
+2. **Kepatuhan Aksesibilitas (WCAG AA) (6.2):** Validasi kontras warna teks dan navigasi keyboard.
+3. **Load & Security Testing (6.3):** Pengujian penetrasi validasi middleware penugasan dan stres test impor massal.

@@ -1,7 +1,27 @@
 import React, { useState } from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
-export default function Welcome() {
+interface EkskulItem {
+    id: string;
+    nama: string;
+    kategori: string;
+    logo_url: string | null;
+    deskripsi: string | null;
+}
+
+interface PengumumanPublikItem {
+    judul: string;
+    konten: string;
+    tanggal: string;
+    ekskul_nama: string;
+}
+
+interface WelcomeProps {
+    ekskulList: EkskulItem[];
+    pengumumanPublik: PengumumanPublikItem[];
+}
+
+export default function Welcome({ ekskulList = [], pengumumanPublik = [] }: WelcomeProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const features = [
@@ -42,7 +62,7 @@ export default function Welcome() {
             )
         },
         {
-            title: "Notifikasi WhatsApp Cepat",
+            title: "Notifikasi Cepat",
             description: "Dapatkan link notifikasi presensi atau hasil seleksi yang terintegrasi langsung dengan nomor WhatsApp tujuan.",
             icon: (
                 <svg className="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,11 +82,11 @@ export default function Welcome() {
     ];
 
     const ekskulCategories = [
-        { name: "Seni & Budaya", count: 6, icon: "🎨" },
-        { name: "Olahraga & Kesehatan", count: 8, icon: "⚽" },
-        { name: "Sains & Teknologi", count: 4, icon: "💻" },
-        { name: "Kemanusiaan & Bela Negara", count: 5, icon: "🇮🇩" },
-        { name: "Keagamaan", count: 4, icon: "🕌" }
+        { name: "Seni & Budaya", icon: "🎨" },
+        { name: "Olahraga & Kesehatan", icon: "⚽" },
+        { name: "Sains & Teknologi", icon: "💻" },
+        { name: "Kemanusiaan & Bela Negara", icon: "🇮🇩" },
+        { name: "Keagamaan", icon: "🕌" }
     ];
 
     return (
@@ -87,7 +107,7 @@ export default function Welcome() {
                             <div className="hidden sm:block">
                                 <h1 className="text-lg font-bold text-navy tracking-tight leading-none">
                                     SMKN 1 Bawang
-                                </h1>
+                               </h1>
                                 <p className="text-xs text-gray-500 mt-1 font-medium">
                                     Sistem Manajemen Ekstrakurikuler
                                 </p>
@@ -97,9 +117,11 @@ export default function Welcome() {
                         {/* Desktop Navigation */}
                         <nav className="hidden md:flex items-center space-x-8">
                             <a href="#tentang" className="text-gray-600 hover:text-navy font-semibold transition-colors duration-200">Tentang</a>
-                            <a href="#fitur" className="text-gray-600 hover:text-navy font-semibold transition-colors duration-200">Fitur Utama</a>
-                            <a href="#kategori" className="text-gray-600 hover:text-navy font-semibold transition-colors duration-200">Kategori Ekskul</a>
-                            <a 
+                            <a href="#pengumuman" className="text-gray-600 hover:text-navy font-semibold transition-colors duration-200">Pengumuman</a>
+                            <Link href="/kalender" className="text-gray-600 hover:text-navy font-semibold transition-colors duration-200">Kalender</Link>
+                            <Link href="/galeri" className="text-gray-600 hover:text-navy font-semibold transition-colors duration-200">Galeri</Link>
+                            <Link href="/pencarian" className="text-gray-600 hover:text-navy font-semibold transition-colors duration-200">Cari</Link>
+                            <Link 
                                 href="/login" 
                                 className="inline-flex items-center px-6 h-12 bg-navy text-white hover:bg-navy/95 rounded-full font-bold shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
                             >
@@ -107,7 +129,7 @@ export default function Welcome() {
                                 <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
-                            </a>
+                            </Link>
                         </nav>
 
                         {/* Mobile Menu Button */}
@@ -139,26 +161,37 @@ export default function Welcome() {
                             Tentang
                         </a>
                         <a 
-                            href="#fitur" 
+                            href="#pengumuman" 
                             onClick={() => setMobileMenuOpen(false)}
                             className="block px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-navy font-semibold transition-all"
                         >
-                            Fitur Utama
+                            Pengumuman
                         </a>
-                        <a 
-                            href="#kategori" 
-                            onClick={() => setMobileMenuOpen(false)}
+                        <Link 
+                            href="/kalender" 
                             className="block px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-navy font-semibold transition-all"
                         >
-                            Kategori Ekskul
-                        </a>
+                            Kalender
+                        </Link>
+                        <Link 
+                            href="/galeri" 
+                            className="block px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-navy font-semibold transition-all"
+                        >
+                            Galeri
+                        </Link>
+                        <Link 
+                            href="/pencarian" 
+                            className="block px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-navy font-semibold transition-all"
+                        >
+                            Cari
+                        </Link>
                         <div className="pt-2">
-                            <a 
+                            <Link 
                                 href="/login" 
                                 className="flex justify-center items-center w-full h-12 bg-navy text-white rounded-xl font-bold shadow-md"
                             >
                                 Masuk Aplikasi
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 )}
@@ -179,7 +212,7 @@ export default function Welcome() {
                                 Kelola pendaftaran, lihat jadwal kegiatan, absensi, hingga rekapitulasi nilai akhir ekstrakurikuler SMKN 1 Bawang dalam satu platform terintegrasi.
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 pt-4">
-                                <a 
+                                <Link 
                                     href="/login" 
                                     className="w-full sm:w-auto inline-flex justify-center items-center px-8 h-14 bg-navy text-white hover:bg-navy/95 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
                                 >
@@ -187,7 +220,7 @@ export default function Welcome() {
                                     <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                     </svg>
-                                </a>
+                                </Link>
                                 <a 
                                     href="#tentang" 
                                     className="w-full sm:w-auto inline-flex justify-center items-center px-8 h-14 bg-white text-gray-700 hover:text-navy border-2 border-gray-200 hover:border-navy/20 rounded-full font-bold transition-all duration-200"
@@ -199,34 +232,38 @@ export default function Welcome() {
                         
                         <div className="mt-16 lg:mt-0 lg:col-span-5 flex justify-center">
                             <div className="relative w-full max-w-md">
-                                {/* Decorative elements */}
                                 <div className="absolute -top-12 -left-12 w-64 h-64 bg-yellow-200/40 rounded-full blur-3xl -z-10 animate-pulse"></div>
                                 <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-blue-200/40 rounded-full blur-3xl -z-10"></div>
                                 
-                                <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+                                <div className="bg-white border border-gray-150 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
                                     <div className="flex justify-between items-center border-b border-gray-100 pb-4 mb-6">
-                                        <h3 className="font-bold text-navy">27 Ekstrakurikuler Aktif</h3>
+                                        <h3 className="font-bold text-navy">Ekstrakurikuler Teraktif</h3>
                                         <span className="text-xs text-gray-500 font-bold bg-gray-100 px-2.5 py-1 rounded-full">
-                                            TA 2026/2027
+                                            Aktif
                                         </span>
                                     </div>
                                     <div className="space-y-4">
-                                        {[
-                                            { name: "Pramuka Wijaya", cat: "Bela Negara", color: "#124272", count: "140 Siswa" },
-                                            { name: "Ekskul Olahraga", cat: "Futsal / Basket", color: "#fda800", count: "85 Siswa" },
-                                            { name: "Klub IT & Robotik", cat: "Teknologi", color: "#00a2e9", count: "48 Siswa" }
-                                        ].map((item, idx) => (
-                                            <div key={idx} className="flex items-center justify-between p-3.5 bg-gray-50 rounded-2xl hover:bg-gray-100/50 transition-colors duration-200">
+                                        {ekskulList.slice(0, 3).map((item, idx) => (
+                                            <div key={item.id} className="flex items-center justify-between p-3.5 bg-gray-50 rounded-2xl hover:bg-gray-100/50 transition-colors duration-200">
                                                 <div className="flex items-center space-x-3.5">
-                                                    <span className="w-3.5 h-3.5 rounded-full" style={{ backgroundColor: item.color }}></span>
+                                                    {item.logo_url ? (
+                                                        <img src={`/storage/${item.logo_url}`} alt={item.nama} className="w-8 h-8 rounded-full object-cover" />
+                                                    ) : (
+                                                        <span className="w-8 h-8 rounded-full bg-navy/10 flex items-center justify-center font-bold text-navy text-xs">
+                                                            {item.nama.substring(0, 2)}
+                                                        </span>
+                                                    )}
                                                     <div>
-                                                        <p className="font-bold text-sm text-gray-800">{item.name}</p>
-                                                        <p className="text-xs text-gray-500 font-semibold">{item.cat}</p>
+                                                        <p className="font-bold text-sm text-gray-800">{item.nama}</p>
+                                                        <p className="text-xs text-gray-500 font-semibold">{item.kategori}</p>
                                                     </div>
                                                 </div>
-                                                <span className="text-xs font-bold text-navy bg-navy/5 px-3 py-1.5 rounded-xl">{item.count}</span>
+                                                <Link href={`/ekskul/${item.id}`} className="text-xs font-bold text-secondary bg-secondary/10 px-3 py-1.5 rounded-xl hover:bg-secondary hover:text-white transition-all">Detail</Link>
                                             </div>
                                         ))}
+                                        {ekskulList.length === 0 && (
+                                            <p className="text-xs text-gray-400 text-center py-4 font-semibold">Belum ada ekstrakurikuler aktif.</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +272,7 @@ export default function Welcome() {
                 </div>
             </section>
 
-            {/* About / Banner Section */}
+            {/* About Section */}
             <section id="tentang" className="py-20 bg-white border-y border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -246,7 +283,6 @@ export default function Welcome() {
                         </p>
                     </div>
 
-                    {/* School Mascot/Banners */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
                         {[
                             { img: "/images/logo-pendidikan.png", title: "Tut Wuri Handayani", desc: "Pendidikan berlandaskan budi pekerti luhur" },
@@ -265,47 +301,41 @@ export default function Welcome() {
                 </div>
             </section>
 
-            {/* Features Section */}
-            <section id="fitur" className="py-20 bg-gray-50">
+            {/* Public Announcements Section */}
+            <section id="pengumuman" className="py-20 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
                         <span className="text-xs font-bold text-accent bg-accent/10 px-3 py-1 rounded-full uppercase tracking-wider">
-                            Sistem Terintegrasi
+                            Informasi Terkini
                         </span>
-                        <h2 className="text-3xl font-black text-navy">Kemudahan Layanan Ekstrakurikuler</h2>
-                        <p className="text-gray-600 font-medium">Fitur lengkap dirancang khusus untuk kebutuhan administrasi sekolah modern.</p>
+                        <h2 className="text-3xl font-black text-navy">Pengumuman Terbaru</h2>
+                        <p className="text-gray-600 font-medium">Dapatkan pengumuman penting langsung dari pembina ekstrakurikuler.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {features.map((f, idx) => (
-                            <div key={idx} className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:border-transparent transition-all duration-300 hover:-translate-y-1 group">
-                                <div className="w-12 h-12 bg-secondary/10 group-hover:bg-secondary group-hover:text-white text-secondary rounded-2xl flex items-center justify-center mb-6 transition-all duration-300">
-                                    {f.icon}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {pengumumanPublik.map((p, idx) => (
+                            <div key={idx} className="bg-white border border-gray-100 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                                <div className="space-y-3">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-[10px] font-extrabold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full uppercase">
+                                            {p.ekskul_nama}
+                                        </span>
+                                        <span className="text-[10px] text-gray-400 font-bold">
+                                            {new Date(p.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                        </span>
+                                    </div>
+                                    <h3 className="font-black text-navy text-md">{p.judul}</h3>
+                                    <p className="text-xs text-gray-500 leading-relaxed font-semibold line-clamp-4">
+                                        {p.konten}
+                                    </p>
                                 </div>
-                                <h3 className="text-lg font-bold text-navy mb-3 group-hover:text-secondary transition-colors duration-200">{f.title}</h3>
-                                <p className="text-sm text-gray-500 font-medium leading-relaxed">{f.description}</p>
                             </div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Categories Section */}
-            <section id="kategori" className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <h2 className="text-3xl font-black text-navy">Kategori Ekstrakurikuler</h2>
-                        <p className="text-gray-600 mt-2 font-medium">Temukan bidang kegemaranmu dan bergabunglah sekarang.</p>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-                        {ekskulCategories.map((c, idx) => (
-                            <div key={idx} className="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-center hover:bg-white hover:shadow-xl hover:scale-105 transition-all duration-300">
-                                <span className="text-4xl block mb-4">{c.icon}</span>
-                                <h3 className="font-bold text-navy text-sm mb-1">{c.name}</h3>
-                                <span className="text-xs text-gray-500 font-semibold">{c.count} Ekskul</span>
+                        {pengumumanPublik.length === 0 && (
+                            <div className="col-span-full bg-white border border-gray-100 rounded-3xl p-12 text-center">
+                                <p className="text-sm text-gray-400 font-semibold">Belum ada pengumuman terbaru saat ini.</p>
                             </div>
-                        ))}
+                        )}
                     </div>
                 </div>
             </section>
@@ -333,9 +363,9 @@ export default function Welcome() {
                             <h4 className="font-bold text-white tracking-wider text-sm uppercase">Tautan Penting</h4>
                             <ul className="space-y-2 text-sm text-white/70 font-semibold">
                                 <li><a href="#tentang" className="hover:text-primary transition-colors">Tentang Sekolah</a></li>
-                                <li><a href="#fitur" className="hover:text-primary transition-colors">Fitur Sistem</a></li>
-                                <li><a href="#kategori" className="hover:text-primary transition-colors">Kategori Kegiatan</a></li>
-                                <li><a href="/login" className="hover:text-primary transition-colors">Akses Aplikasi</a></li>
+                                <li><a href="#pengumuman" className="hover:text-primary transition-colors">Pengumuman</a></li>
+                                <li><Link href="/kalender" className="hover:text-primary transition-colors">Kalender Jadwal</Link></li>
+                                <li><Link href="/galeri" className="hover:text-primary transition-colors">Galeri Album</Link></li>
                             </ul>
                         </div>
 
@@ -345,7 +375,6 @@ export default function Welcome() {
                             <p className="text-sm text-white/75 font-medium leading-relaxed">
                                 Jl. Raya Mayjend. Panjaitan No. 1, Bawang, Kec. Bawang, Kab. Banjarnegara, Jawa Tengah 53471
                             </p>
-                            {/* Social Media Icons */}
                             <div className="flex space-x-4 pt-2">
                                 {[
                                     { img: "/images/facebook.png", link: "#" },
